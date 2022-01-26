@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MyRestController {
+public class MyRestController extends Employee {
 
     @Autowired
     private EmployeeService employeeService;
@@ -18,6 +18,12 @@ public class MyRestController {
     public List<Employee> showAllEmployees() {
         List<Employee> allEmployees = employeeService.getAllEmployees();
         return allEmployees;
+    }
+
+    @GetMapping("/employee/addsalary")
+    public void addSalaryForEmployee(int id, int salary) {
+        Employee employee = employeeService.getEmployee(id);
+        employee.setSalary(500);
     }
 
     @GetMapping("/employee/{id}")

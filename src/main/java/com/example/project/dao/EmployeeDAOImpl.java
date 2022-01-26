@@ -25,6 +25,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
+    public void addSalaryForEmployee(int id, int salary){
+        Employee employee = entityManager.find(Employee.class, id);
+        employee.setSalary(salary);
+    }
+
+    @Override
     public void saveEmployee(Employee employee) {
 
         entityManager.merge(employee);
